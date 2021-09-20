@@ -1,30 +1,28 @@
-package entity;
+package entity.logEntity;
 
+import entity.Customer;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
-
 
 import javax.persistence.*;
 
-@ToString
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "order")
-public class Order {
-
+@Table(name = "customers_log")
+public class CustomerLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
+
+    @Column(name = "action")
+    private String action;
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
-    @ManyToOne
-    @JoinColumn(name = "tariff_id", nullable = false)
-    private Tariff tariff;
 
-    @Column(name = "device_type")
-    private DeviceTypes deviceType;
+    @Column(name = "service_type_id")
+    private TypeOfService typeOfService;
 }

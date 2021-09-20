@@ -20,6 +20,4 @@ public class Tariff {
 
     @Column(name = "sms")
     private int smsLimit;
-
-
 }

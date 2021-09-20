@@ -3,8 +3,10 @@ package entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import utils.CustomerUtils;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @ToString
@@ -25,6 +27,13 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
-
+    @Column(name = "sms")
+    private int smsCount = CustomerUtils.smsCount(this);
+    @Column(name = "calls")
+    private int callsCount = CustomerUtils.callCount(this);
+    @Column(name = "internate")
+    private int internetCount = CustomerUtils.internetCount(this);
 }

@@ -1,31 +1,38 @@
 package dao;
 
-import utils.HibernateUtil;
+import entity.Order;
+import entity.Tariff;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import utils.HibernateUtil;
 
-
-public abstract class DefaultDao {
-    public <O> void create(O obj) {
+public class TariffDao extends DefaultDao {
+    public Tariff read(String id) {
+        Tariff tariff = new Tariff();
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(obj);
+            tariff = session.get(Tariff.class, id);
             transaction.commit();
+            return tariff;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+
         }
+        return tariff;
     }
 
-    public <O> void update(O obj) {
+    public void delete(String id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(obj);
+            Tariff entity = session.get(Tariff.class, id);
+            session.delete(entity);
             transaction.commit();
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
