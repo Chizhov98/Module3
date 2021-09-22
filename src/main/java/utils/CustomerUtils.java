@@ -1,6 +1,6 @@
 package utils;
 
-import com.mysql.cj.log.Log;
+
 import dao.CustomerDao;
 import dao.CustomerLogDao;
 import dao.OrderDao;

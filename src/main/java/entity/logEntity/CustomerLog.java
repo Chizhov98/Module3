@@ -2,10 +2,12 @@ package entity.logEntity;
 
 import entity.Customer;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -23,6 +25,7 @@ public class CustomerLog {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "service_type_id")
     private TypeOfService typeOfService;
 }

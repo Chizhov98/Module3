@@ -5,8 +5,7 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">
-            jdbc:postgresql://ec2-3-220-214-162.compute-1.amazonaws.com :5432/d9g0a5b5f70vl4
+        <property name="connection.url">jdbc:postgresql://ec2-3-220-214-162.compute-1.amazonaws.com:5432/d9g0a5b5f70vl4
         </property>
         <property name="connection.username">qqenvezwkwduxc</property>
         <property name="connection.password">0926558399eee558e16198b7b4ff95ba2f95b92ffc56b54bd2311f9d809308d0</property>
@@ -24,7 +23,7 @@
         <property name="current_session_context_class">thread</property>
 
         <!-- Drop and re-create the database schema on startup -->
-
+        <property name="hbm2ddl.auto">update</property>
 
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
@@ -33,11 +32,11 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">2</property>
 
-        <mapping class="Entity.Order"/>
-        <mapping class="Entity.Track"/>
-        <mapping class="Entity.Album"/>
-        <mapping class="Entity.Artist"/>
-        <mapping class="Entity.Customer"/>
+        <mapping class="entity.Customer"/>
+        <mapping class="entity.Tariff"/>
+        <mapping class="entity.Order"/>
+        <mapping class="entity.logEntity.SmsLog"/>
+        <mapping class="entity.logEntity.CustomerLog"/>
 
     </session-factory>
 </hibernate-configuration>

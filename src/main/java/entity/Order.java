@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "order")
+@NoArgsConstructor
 public class Order {
 
     @Id
@@ -25,6 +27,7 @@ public class Order {
     @JoinColumn(name = "tariff_id", nullable = false)
     private Tariff tariff;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "device_type")
     private DeviceTypes deviceType;
 }

@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import utils.CustomerUtils;
@@ -8,7 +9,7 @@ import utils.CustomerUtils;
 import javax.persistence.*;
 import java.util.List;
 
-
+@NoArgsConstructor
 @ToString
 @Getter
 @Setter
