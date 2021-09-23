@@ -14,7 +14,7 @@ public class Tariff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+        private int id;
 
     @Column(name = "title")
     private String title;

@@ -1,12 +1,12 @@
 package Ui;
 
-import utils.CustomerUtils;
-import utils.LogUtil;
+import service.Service;
 
 import java.util.Scanner;
 
 public class UiController {
 
+    private static final Service service = new Service();
     private static final ConsoleUi ui = new ConsoleUi();
     private static final Scanner in = new Scanner(System.in);
 
@@ -24,23 +24,23 @@ public class UiController {
         ui.mainMenu();
         switch (scanInt()) {
             case 1:
-                CustomerUtils.getTopFifeSmsUsers();
+                ui.returnResult(service.getTomFifeSmsWriters());
                 break;
             case 2:
-                CustomerUtils.getTopFifeInternetUser();
+                ui.returnResult(service.getTopFifeInternetUsers());
                 break;
             case 3:
-                CustomerUtils.getTopFifeCallers();
+                ui.returnResult(service.getTopFifeCallers());
                 break;
             case 4:
                 ui.smsText();
-                LogUtil.getSms(scanLine());
+                ui.returnResult(service.findSmsByText(scanLine()));
                 break;
             case 5:
-                LogUtil.getPopularDevice();
+                ui.returnResult(service.getFavoriteDevice());
                 break;
             case 6:
-                LogUtil.getPopularService();
+                ui.returnResult(service.getFavoriteService());
                 break;
             case 0:
                 System.exit(0);
@@ -48,6 +48,4 @@ public class UiController {
                 mainMenu();
         }
     }
-
-
 }

@@ -17,4 +17,8 @@ public class ConsoleUi {
     public void smsText(){
         System.out.println("Write part of text to find");
     }
+
+    public <T> void returnResult(T obj){
+        System.out.println(obj.toString());
+    }
 }

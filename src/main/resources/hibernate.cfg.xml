@@ -34,9 +34,9 @@
 
         <mapping class="entity.Customer"/>
         <mapping class="entity.Tariff"/>
-        <mapping class="entity.Order"/>
-        <mapping class="entity.logEntity.SmsLog"/>
-        <mapping class="entity.logEntity.CustomerLog"/>
+        <mapping class="entity.Calls"/>
+        <mapping class="entity.Internet"/>
+        <mapping class="entity.Sms"/>
 
     </session-factory>
 </hibernate-configuration>
