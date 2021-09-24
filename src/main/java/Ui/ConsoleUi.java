@@ -20,5 +20,6 @@ public class ConsoleUi {
 
     public <T> void returnResult(T obj){
         System.out.println(obj.toString());
+        UiController.mainMenu();
     }
 }

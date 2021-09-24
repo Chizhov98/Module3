@@ -3,7 +3,6 @@ package entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @NoArgsConstructor
@@ -18,11 +17,11 @@ public class Calls {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "caller_id" )
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "caller_id")
     private Customer caller;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "companion_id")
     private Customer companion;
 

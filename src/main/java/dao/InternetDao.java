@@ -17,8 +17,9 @@ public class InternetDao extends DefaultDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "SELECT user FROM Interner WHERE user IN (SELECT count(id) c, user FROM Internet GROUP BY user ORDER BY c DESC Limit 5)";
+            String hql = "FROM Customer WHERE id IN ( SELECT user.id FROM Internet as i GROUP BY user ORDER BY count(i.id) DESC)";
             Query query = session.createQuery(hql);
+            query.setMaxResults(5);
             result = query.list();
             transaction.commit();
         } catch (Exception e) {
@@ -35,8 +36,9 @@ public class InternetDao extends DefaultDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "SELECT device FROM Interner WHERE device IN (SELECT device, count(id) mycount FROM Internet GROUP BY device ORDER BY mycount DESC Limit 1)";
+            String hql = "SELECT device FROM Internet GROUP BY device ORDER BY count(id) DESC";
             Query query = session.createQuery(hql);
+            query.setMaxResults(1);
             result = (DeviceTypes) query.getSingleResult();
             transaction.commit();
         } catch (Exception e) {

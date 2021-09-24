@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @ToString
@@ -29,4 +30,5 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "tariff_id")
     private Tariff tariff;
+
 }

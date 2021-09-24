@@ -13,15 +13,16 @@ import java.util.List;
 
 public class SmsDao extends DefaultDao {
 
-    public Sms findSmsByTextPart(String text) {
-        Sms sms = null;
+    public String findSmsByTextPart(String text) {
+        String sms = null;
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "FROM Sms WHERE message LIKE %:text% Limit 1";
+            String hql = "select message FROM Sms WHERE message LIKE :text";
             Query query = session.createQuery(hql);
-            query.setParameter("text", text);
-            sms = (Sms) query.getSingleResult();
+            query.setMaxResults(1);
+            query.setParameter("text", "%" + text + "%");
+            sms = (String) query.list().get(0);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -37,8 +38,10 @@ public class SmsDao extends DefaultDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "SELECT writer FROM Sms WHERE writer IN (SELECT count(id) c, writer FROM Sms GROUP BY writer ORDER BY c DESC Limit 5)";
+            String hql = "FROM Customer WHERE id IN ( SELECT writer_id.id FROM Sms as i GROUP BY writer_id ORDER BY count(i.id) DESC)";
             Query query = session.createQuery(hql);
+            query.setMaxResults(5);
+            query.setFirstResult(0);
             result = query.list();
             transaction.commit();
         } catch (Exception e) {

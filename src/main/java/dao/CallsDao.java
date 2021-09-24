@@ -17,8 +17,9 @@ public class CallsDao extends DefaultDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "SELECT caller FROM Calls WHERE caller IN (SELECT caller, count(id) c FROM Calls GROUP BY caller ORDER BY c DESC Limit 5)";
+            String hql = "FROM Customer WHERE id IN ( SELECT caller.id FROM Calls as i GROUP BY caller ORDER BY count(i.id) DESC)";
             Query query = session.createQuery(hql);
+            query.setMaxResults(5);
             result = query.list();
             transaction.commit();
         } catch (Exception e) {

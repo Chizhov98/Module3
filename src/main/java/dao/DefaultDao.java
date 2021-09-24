@@ -41,7 +41,7 @@ public abstract class DefaultDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "SELECT * FROM " + taleName;
+            String hql = "FROM " + taleName;
             Query query = session.createQuery(hql);
             result = query.getMaxResults();
             transaction.commit();

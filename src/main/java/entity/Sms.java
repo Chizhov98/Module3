@@ -20,8 +20,8 @@ public class Sms {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "caller_id" )
-    private Customer writer;
+    @JoinColumn(name = "writer_id" )
+    private Customer writer_id;
 
     @ManyToOne
     @JoinColumn(name = "companion_id")

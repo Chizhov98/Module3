@@ -32,11 +32,12 @@
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">2</property>
 
-        <mapping class="entity.Customer"/>
-        <mapping class="entity.Tariff"/>
+
         <mapping class="entity.Calls"/>
         <mapping class="entity.Internet"/>
         <mapping class="entity.Sms"/>
+        <mapping class="entity.Customer"/>
+        <mapping class="entity.Tariff"/>
 
     </session-factory>
 </hibernate-configuration>

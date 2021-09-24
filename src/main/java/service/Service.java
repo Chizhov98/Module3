@@ -3,7 +3,6 @@ package service;
 import dao.*;
 import entity.Customer;
 import entity.DeviceTypes;
-import entity.Sms;
 
 
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class Service {
         return smsDao.getTopFifeUsers();
     }
 
-    public Sms findSmsByText(String text) {
+    public String findSmsByText(String text) {
         return smsDao.findSmsByTextPart(text);
     }
 
@@ -43,8 +42,9 @@ public class Service {
         int[] services = {internet, sms, calls};
         Arrays.sort(services);
         if (services[0] == internet) {
-            return "Internte";
-        }if(services[0]==sms){
+            return "Internet";
+        }
+        if (services[0] == sms) {
             return "Sms";
         }
         return "Call";
